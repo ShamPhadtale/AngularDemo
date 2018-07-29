@@ -18,14 +18,18 @@ export class SepEventsService{
         return this._http.get<SepEvent[]>("http://localhost:9090/api/events");
     }
     
-    getSingleEvent(id:number):SepEvent{
-        let evnt:SepEvent=new SepEvent();
-        for(const event of this.eventsDate){
-            if(event.eventId==id){
-                evnt = event;
-            }
-        }
-        return evnt;
+    getSingleEvent(id:number):Observable<SepEvent>{
+        // let evnt:SepEvent=new SepEvent();
+        // for(const event of this.eventsDate){
+        //     if(event.eventId==id){
+        //         evnt = event;
+        //     }
+        // }
+        // return evnt;
+        return this._http.get<SepEvent>("http://localhost:9090/api/events/"+id);
+    }
+    registerNewEvent(event: Event):Observable<string> {
+        return this._http.post<string>("http://localhost:9090/api/events", event);
     }
     private eventsDate:SepEvent[]=[
         {

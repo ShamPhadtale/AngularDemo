@@ -1,47 +1,42 @@
 import { NgModule } from "@angular/core";
 import { BrowserModule } from "@angular/platform-browser"; // anything ends with module need to add in import except Ngmodule
-import { FormsModule } from "@angular/forms";
-import { HttpClientModule } from "@angular/common/http";
+
+import { appRouting } from "./app.routing";
+
+// commented for lazy loading impl
+// import { HomeModule } from "./home/home.module";
+
+// import { EmployeesModule } from "./employees/employees.module";
+// import { EventModule } from "./events/events.module";
+// import { JphModule } from "./jph/jph.module";
+import { SepNavbarModule } from "./navigation/navigation.module";
+
 
 // components - also add to declaration
 import { AppComponent } from "./app.component";
-import { EmployeesListComponent } from "./employees/components/employees-list.component";
-import { EmployeeDetailsComponent } from "./employees/components/employee-details.component";
-import { EventsListComponent } from "./events/components/events-list.components";
-import { EventsDetailsComponent } from "./events/components/event-details.component";
-import { JphPostsListComponent } from "../app/jph/components/jph-posts-list.component";
 
 // pipes - also add to declaration
-import { FirstLetterCapitalPipe } from "./events/pipes/first-letter-capital.pipe";
-import { FilterByPipe } from "./events/pipes/filter-by.pipe";
+
 
 // directives - also add to declaration
 
 
 // services - also add to providers. it creates single tone object
-import { SepEventsService } from "./events/services/sep-events.service";
-import { JphService } from "./jph/services/jph.service";
+
 
 @NgModule({
     imports: [
         BrowserModule, 
-        FormsModule, 
-        HttpClientModule],
-    exports: [],
+
+        SepNavbarModule,
+    
+        appRouting
+    ],
+    exports: [],                        // to use outside of container
     declarations: [
-        AppComponent, 
-        EmployeesListComponent, 
-        EmployeeDetailsComponent,
-        EventsListComponent,
-        EventsDetailsComponent,
-        FirstLetterCapitalPipe,
-        FilterByPipe,
-        JphPostsListComponent
+        AppComponent       
     ],
-    providers: [
-        SepEventsService,
-        JphService
-    ],
+    providers: [],
     bootstrap: [AppComponent]
 })
 export class AppModule {
